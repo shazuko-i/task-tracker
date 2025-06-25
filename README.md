@@ -1,46 +1,109 @@
-# Getting Started with Create React App
+# 📌 Task Tracker App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack task tracking application built using **React (TypeScript)** on the frontend and **Express.js with Prisma** on the backend.  
+It allows users to manage tasks with features like adding, editing, deleting, marking complete/incomplete, filtering, sorting, and viewing task statistics.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- ✅ Add / Edit / Delete Tasks
+- ✅ Mark tasks as Complete or In Progress
+- ✅ Filter tasks by All, In Progress, or Completed
+- ✅ Sort tasks by Newest or Oldest
+- ✅ Summary cards showing task count by status
+- ✅ Clean Notion-inspired UI using Bootstrap Icons
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ⚙️ Tech Stack
 
-### `npm test`
+| Layer      | Technology             |
+|------------|------------------------|
+| Frontend   | React (TypeScript)     |
+| Styling    | CSS, Bootstrap Icons   |
+| Backend    | Express.js (Node.js)   |
+| ORM        | Prisma                 |
+| Database   | PostgreSQL             |
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📂 Folder Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+task-tracker/
+├── backend/
+│   ├── app.js
+│   ├── server.js
+│   ├── controllers/
+│   ├── routes/
+│   ├── models/
+│   └── prisma/
+├── public/
+├── src/
+│   ├── App.tsx
+│   ├── App.css
+│   ├── types.ts
+│   └── ...
+└── README.md
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠️ Setup Instructions
 
-### `npm run eject`
+### 1. Clone the repository
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```bash
+git clone https://github.com/your-username/task-tracker.git
+cd task-tracker
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2. Install dependencies
+Install frontend dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Install backend dependencies:
 
-## Learn More
+```bash
+cd backend
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Set up the database
+- Create a PostgreSQL database (e.g., using pgAdmin or createdb command).
+- Create a .env file inside the backend/ directory:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```env
+DATABASE_URL=postgresql://yourusername:yourpassword@localhost:5432/yourdbname
+```
+Replace yourusername, yourpassword, and yourdbname with your actual PostgreSQL info.
+
+### 4. Run Prisma migrations & generate the client
+
+```bash
+cd backend
+# Ensure you're in the backend folder before running the following
+npx prisma migrate dev --name init
+npx prisma generate
+```
+
+### 5. Start the backend server
+
+```bash
+cd backend
+node server.js
+```
+
+The backend will run at: http://localhost:3001
+
+### 6. Start the frontend React app
+
+```bash
+cd task-tracker
+npm start
+```
+The frontend will open at: http://localhost:3000
