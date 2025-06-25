@@ -1,5 +1,6 @@
 const Task = require('../models/taskModel');
 
+// Controller to get tasks list
 exports.getTasks = async (req, res) => {
   // console.log('BODY:', req.body);
   try {
@@ -11,6 +12,7 @@ exports.getTasks = async (req, res) => {
   }
 };
 
+// Controller to create a new task
 exports.createTask = async (req, res) => {
   // console.log('BODY:', req.body);
   try {
@@ -28,6 +30,7 @@ exports.createTask = async (req, res) => {
   }
 };
 
+// Controller to create a new task
 exports.updateTask = async (req, res) => {
   // console.log('BODY:', req.body);
   try {
@@ -47,6 +50,7 @@ exports.updateTask = async (req, res) => {
   }
 };
 
+// Controller to delete the task
 exports.deleteTask = async (req, res) => {
   // console.log('BODY:', req.body);
   try {

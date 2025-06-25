@@ -21,6 +21,7 @@ function App() {
   const [filter, setFilter] = useState<'All' | 'Incomplete' | 'Complete'>('All');
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
 
+  // Fetch tasks from API when app loads
   useEffect(() => {
     fetchTasks();
   }, []);
@@ -35,6 +36,7 @@ function App() {
     setIncompleteCount(incomplete);
   };
 
+  // Fetch tasks
   const fetchTasks = async () => {
     setLoading(true);
     try {
@@ -48,6 +50,7 @@ function App() {
     }
   };
 
+  // Create a new task
   const addTask = async () => {
     if (!taskname || !taskdesc) {
       setError('Task name and description are required.');
@@ -69,18 +72,22 @@ function App() {
     }
   };
 
+  // Update a task status
   const updateTaskStatus = async (id: number, currentStatus: string | null) => {
     const newStatus = currentStatus === 'Complete' ? 'Incomplete' : 'Complete';
-
+    
+    // Send POST request to backend
     try {
       const res = await axios.put(`${API_URL}/${id}`, { status: newStatus });
       const updatedTasks = tasks.map(task => task.id === id ? res.data : task);
+      // Update state with new task
       calculateSummary(updatedTasks);
     } catch {
       setError('Failed to update task status.');
     }
   };
 
+  // Delete a task
   const deleteTask = async (id: number) => {
     if (!window.confirm('Are you sure you want to delete this task?')) return;
 
@@ -93,12 +100,14 @@ function App() {
     }
   };
 
+  // Edit a task
   const startEdit = (task: Task) => {
     setEditingId(task.id);
     setTaskname(task.name ?? '');
     setTaskdesc(task.description ?? '');
   };
 
+  // Save the edited task
   const saveEdit = async () => {
     if (!taskname || !taskdesc || editingId === null) {
       setError('Both fields are required to save changes.');
